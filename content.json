@@ -2,7 +2,7 @@
   "name": "Cosmic Crusader",
   "identity": "developer and ctfer",
   "bio": "Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)",
-  "now": "ctfing at <a href=\"https://b6a.black\" target=\"_blank\">Black Bauhina</a> and <a href=\"https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/\" target=\"_blank\">Marco The Dog</a>" ,
+  "now": "ctfing at <a href=\"https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/\" target=\"_blank\">Marco The Dog</a>" ,
   "projects": [
     {
       "title": "MacLiveEngine",
@@ -14,7 +14,7 @@
       "title": "More To Come",
       "description": "chilling rn",
       "year": "2026",
-      "url": ""
+      "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
     }
   ],
   "achievements": [
