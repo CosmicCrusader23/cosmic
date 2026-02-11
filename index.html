@@ -32,6 +32,20 @@
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
+  <!-- Navigation bar -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-link active" aria-current="page">home</a>
+      <a href="/posts.html" class="nav-link">posts</a>
+    </div>
+  </nav>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
+    <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
+    <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
+  </button>
+
   <main id="main">
     <header class="intro">
       <div class="doodle" aria-hidden="true">✿</div>
@@ -90,6 +104,45 @@
     </p>
   </footer>
 
+  <!-- Theme toggle script -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      function setButtonState(isDark) {
+        toggle.classList.toggle('is-dark', isDark);
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+
+      // Check for saved theme preference or default to dark
+      const savedTheme = localStorage.getItem('theme');
+      const defaultDark = !savedTheme || savedTheme === 'dark';
+
+      // Apply initial theme (default to dark)
+      if (defaultDark) html.classList.add('dark');
+      setButtonState(html.classList.contains('dark'));
+
+      // Toggle theme on button click
+      toggle.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        setButtonState(isDark);
+
+        // tactile animation
+        toggle.animate(
+          [ { transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(0deg)' } ],
+          { duration: 360, easing: 'cubic-bezier(.25,.46,.45,.94)' }
+        );
+      });
+    })();
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
   <script src="hydrate.js"></script>
 </body>
 </html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example Post — Cosmic Crusader</title>
+  <meta name="description" content="An example post">
+  <meta name="author" content="Cosmic Crusader">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+
+  <!-- Google Fonts: Architects Daughter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    body { font-display: swap; }
+    article { max-width: 620px; margin: 0 auto; }
+    article p { margin: 1rem 0; line-height: 1.7; }
+    article h2 { margin: 2rem 0 1rem 0; font-size: 1.5rem; }
+    article h3 { margin: 1.5rem 0 0.75rem 0; font-size: 1.25rem; }
+    article code { 
+      background: var(--card); 
+      padding: 0.2rem 0.4rem; 
+      border-radius: 4px; 
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 0.9em;
+    }
+    article pre { 
+      background: var(--card); 
+      padding: 1rem; 
+      border-radius: 8px; 
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+    article pre code { 
+      background: none; 
+      padding: 0; 
+    }
+    .post-meta {
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+      margin: 0.5rem 0 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Navigation bar -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-link">home</a>
+      <a href="/posts.html" class="nav-link">posts</a>
+    </div>
+  </nav>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
+    <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
+    <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
+  </button>
+
+  <main id="main">
+    <article>
+      <header class="intro">
+        <div class="doodle" aria-hidden="true">✍</div>
+        <h1>Example Post Title</h1>
+        <p class="post-meta">February 11, 2026</p>
+      </header>
+
+      <hr class="sep" aria-hidden="true">
+
+      <p>
+        This is an example post. Replace this content with your actual post content.
+        You can use regular HTML, markdown-style formatting, or whatever you prefer.
+      </p>
+
+      <h2>A Section Header</h2>
+
+      <p>
+        Write your thoughts, CTF writeups, technical posts, or anything else here.
+        The styling matches your home page for consistency.
+      </p>
+
+      <h3>Code Examples</h3>
+
+      <p>You can include inline code like <code>print("hello")</code> or code blocks:</p>
+
+      <pre><code>def solve_challenge():
+    flag = "CTF{example_flag}"
+    return flag</code></pre>
+
+      <h3>Links and Formatting</h3>
+
+      <p>
+        You can link to <a href="https://github.com">GitHub</a> or any other site.
+        Use <strong>bold</strong> and <em>italic</em> text as needed.
+      </p>
+
+      <hr class="sep" aria-hidden="true">
+
+      <p style="text-align: center; margin-top: 2rem;">
+        <a href="/posts.html" style="color: var(--fg-muted);">← Back to all posts</a>
+      </p>
+    </article>
+  </main>
+
+  <footer>
+    <p>
+      <span class="footer-year">2026</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span class="footer-line">© 2026 Cosmic Crusader. All rights reserved.</span>
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
+  
+  <!-- Theme toggle script -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      function setButtonState(isDark) {
+        toggle.classList.toggle('is-dark', isDark);
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      const defaultDark = !savedTheme || savedTheme === 'dark';
+
+      if (defaultDark) html.classList.add('dark');
+      setButtonState(html.classList.contains('dark'));
+
+      toggle.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        setButtonState(isDark);
+
+        toggle.animate(
+          [ { transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(0deg)' } ],
+          { duration: 360, easing: 'cubic-bezier(.25,.46,.45,.94)' }
+        );
+      });
+    })();
+  </script>
+</body>
+</html>

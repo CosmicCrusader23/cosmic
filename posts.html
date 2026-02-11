@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts — Cosmic Crusader</title>
+  <meta name="description" content="Writing and posts by Cosmic Crusader">
+  <meta name="author" content="Cosmic Crusader">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Posts — Cosmic Crusader">
+  <meta property="og:description" content="Writing and posts">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yoursite.com/posts.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+
+  <!-- Google Fonts: Architects Daughter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body { font-display: swap; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Navigation bar -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/index.html" class="nav-link">home</a>
+      <a href="/posts.html" class="nav-link active" aria-current="page">posts</a>
+    </div>
+  </nav>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
+    <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
+    <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
+  </button>
+
+  <main id="main">
+    <header class="intro">
+      <div class="doodle" aria-hidden="true">✎</div>
+      <h1>Posts</h1>
+      <p class="identity">Thoughts, writeups, and other things I've written.</p>
+    </header>
+
+    <hr class="sep" aria-hidden="true">
+
+    <section aria-labelledby="posts-heading">
+      <h2 id="posts-heading" class="sr-only">All posts</h2>
+      <ul class="post-list" id="post-list">
+        <!-- Rendered from content.json by posts.js -->
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <span class="footer-year">2026</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span class="footer-line">© 2026 Cosmic Crusader. All rights reserved.</span>
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
+  
+  <!-- Theme toggle script -->
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      function setButtonState(isDark) {
+        toggle.classList.toggle('is-dark', isDark);
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      const defaultDark = !savedTheme || savedTheme === 'dark';
+
+      if (defaultDark) html.classList.add('dark');
+      setButtonState(html.classList.contains('dark'));
+
+      toggle.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        setButtonState(isDark);
+
+        toggle.animate(
+          [ { transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(0deg)' } ],
+          { duration: 360, easing: 'cubic-bezier(.25,.46,.45,.94)' }
+        );
+      });
+    })();
+  </script>
+
+  <script src="posts.js"></script>
+</body>
+</html>

@@ -2,11 +2,17 @@
   "name": "Cosmic Crusader",
   "identity": "developer and ctfer",
   "bio": "Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)",
-  "now": "ctfing at <a href=\"https://b6a.black\" target=\"_blank\">b6a.black</a> and <a href=\"https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/\" target=\"_blank\">Marco The Dog</a>" ,
+  "now": "ctfing at <a href=\"https://b6a.black\" target=\"_blank\">Black Bauhina</a> and <a href=\"https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/\" target=\"_blank\">Marco The Dog</a>" ,
   "projects": [
     {
       "title": "MacLiveEngine",
       "description": "Live wallpaper engine for macOS — videos, web scenes, and more on your desktop.",
+      "year": "2026",
+      "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
+    },
+    {
+      "title": "More To Come",
+      "description": "chilling rn",
       "year": "2026",
       "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
     }
@@ -18,13 +24,14 @@
     },
     {
       "title": "Fourth place — HKCERT CTF Heats 2026 Secondary Division",
-      "year": "2026"
+      "year": "2025"
     }
   ],
   "writing": [
     {
       "title": "More soon",
       "description": "I'm working on a few posts. Check back sometime.",
+      "date": "Feb 2026",
       "url": null
     }
   ],
@@ -32,6 +39,8 @@
     "email": "edwinchansjps@gmail.com",
     "github": "https://github.com/CosmicCrusader23",
     "twitter": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ",
+    "youtube": "https://www.youtube.com/@Edgelord511",
+    "facebook": null,
     "linkedin": null
   },
   "footer_line": "© 2026 Cosmic Crusader. All rights reserved."

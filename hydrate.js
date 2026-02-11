@@ -87,14 +87,50 @@
     if (c.links) {
       var ll = document.getElementById('link-list');
       if (ll) {
+        // render any key the user adds to `links` in content.json
+        var entries = Object.entries(c.links).filter(function (kv) { return kv[1] != null && kv[1] !== ''; });
         var items = [];
-        if (c.links.email) items.push('<li><a href="mailto:' + esc(c.links.email) + '">email</a></li>');
-        if (c.links.github) items.push('<li><a href="' + esc(c.links.github) + '" target="_blank" rel="noopener">github</a></li>');
-        if (c.links.twitter) items.push('<li><a href="' + esc(c.links.twitter) + '" target="_blank" rel="noopener">twitter</a></li>');
-        if (c.links.bluesky) items.push('<li><a href="' + esc(c.links.bluesky) + '" target="_blank" rel="noopener">bluesky</a></li>');
-        if (c.links.linkedin) items.push('<li><a href="' + esc(c.links.linkedin) + '" target="_blank" rel="noopener">linkedin</a></li>');
+
+        entries.forEach(function (kv) {
+          var key = kv[0];
+          var val = kv[1];
+
+          // support arrays of links per key
+          if (Array.isArray(val)) {
+            val.forEach(function (v) { items.push(renderLink(key, v)); });
+          } else {
+            items.push(renderLink(key, val));
+          }
+        });
+
         ll.innerHTML = items.join('');
       }
+    }
+
+    // helper: render a single link entry (sanitized)
+    function renderLink(key, value) {
+      if (!value) return '';
+      var k = String(key).toLowerCase();
+      var labelMap = {
+        email: 'email',
+        github: 'github',
+        twitter: 'twitter',
+        bluesky: 'bluesky',
+        linkedin: 'linkedin',
+        youtube: 'youtube',
+        mastodon: 'mastodon',
+        rss: 'rss'
+      };
+      var label = labelMap[k] || k.replace(/[_-]/g, ' ');
+
+      var href = String(value).trim();
+      // if it's an email address, ensure mailto:
+      if (k === 'email' && !/^mailto:/i.test(href)) href = 'mailto:' + href;
+      // if it's missing a scheme, treat as external
+      var needsTarget = !/^mailto:/i.test(href) && !/^[a-z]+:/i.test(href);
+      var targetAttr = needsTarget || /^https?:\/\//i.test(href) ? ' target="_blank" rel="noopener"' : '';
+
+      return '<li><a href="' + esc(href) + '"' + targetAttr + '>' + esc(label) + '</a></li>';
     }
 
     // Footer
