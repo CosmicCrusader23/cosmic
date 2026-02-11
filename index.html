@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmic Crusader</title>
+  <meta name="description" content="Developer & maker of things. Personal site.">
+  <meta name="author" content="Cosmic Crusader">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Cosmic Crusader">
+  <meta property="og:description" content="Developer & maker of things.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yoursite.com">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+
+  <!-- Google Fonts: Architects Daughter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Inline critical font-face as fallback in case Google Fonts is slow -->
+  <style>
+    /* Prevent FOIT: show text immediately, swap when font loads */
+    body { font-display: swap; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <main id="main">
+    <header class="intro">
+      <div class="doodle" aria-hidden="true">✿</div>
+      <h1 id="site-name">Cosmic Crusader</h1>
+      <p class="identity" id="site-identity">developer & maker of things</p>
+      <p class="bio" id="site-bio">
+        Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong o/
+      </p>
+      <div class="now-card" id="site-now">
+        <span class="now-label">now —</span> ctfing w/ <a href="https://ctftime.org/team/83678/" data-astro-cid-j7pv25f6="">Black Bauhinia</a>
+      </div>
+    </header>
+
+    <hr class="sep" aria-hidden="true">
+
+    <section class="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <ul class="project-list" id="project-list">
+        <!-- Rendered from content.json by hydrate.js -->
+      </ul>
+    </section>
+
+    <hr class="sep" aria-hidden="true">
+
+    <section class="achievements" aria-labelledby="achievements-heading">
+      <h2 id="achievements-heading">Achievements</h2>
+      <ul class="achievement-list" id="achievement-list">
+        <!-- Rendered from content.json by hydrate.js -->
+      </ul>
+    </section>
+
+    <hr class="sep" aria-hidden="true">
+
+    <section class="writing" aria-labelledby="writing-heading">
+      <h2 id="writing-heading">Writing</h2>
+      <p class="writing-placeholder" id="writing-list">I'm working on a few posts. Check back sometime.</p>
+    </section>
+
+    <hr class="sep" aria-hidden="true">
+
+    <section class="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Find me</h2>
+      <ul class="link-list" id="link-list">
+        <li><a href="mailto:you@example.com">email</a></li>
+        <li><a href="https://github.com/CosmicCrusader23" target="_blank" rel="noopener">github</a></li>
+        <li><a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">twitter</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <span class="footer-year">2026</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span class="footer-line" id="footer-line">© 2026 Cosmic Crusader. All rights reserved.</span>
+    </p>
+  </footer>
+
+  <script src="hydrate.js"></script>
+</body>
+</html>
