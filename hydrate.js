@@ -140,7 +140,10 @@
 
   /* helpers */
   function setText(id, t) { var e = document.getElementById(id); if (e && t) e.textContent = t; }
-  function setHTML(id, t) { var e = document.getElementById(id); if (e && t) e.innerHTML = esc(t); }
+  function setHTML(id, t) { 
+    var e = document.getElementById(id); 
+    if (e && t) e.innerHTML = t; 
+}
   function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
   function setMeta(name, content, isOG) {
     if (!content) return;
