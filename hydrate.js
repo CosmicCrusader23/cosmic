@@ -17,6 +17,7 @@
     setText('site-name', c.name);
     setHTML('site-identity', c.identity);
     setHTML('site-bio', c.bio);
+    setHTML('site-now', c.now);
 
     if (c.now) {
       var nowEl = document.getElementById('site-now');
