@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosmic Crusader</title>
-  <meta name="description" content="developer and ctfer.">
+  <meta name="description" content="Developer and CTF player from Hong Kong.">
   <meta name="author" content="Cosmic Crusader">
 
   <!-- OpenGraph -->
   <meta property="og:title" content="Cosmic Crusader">
-  <meta property="og:description" content="developer and ctfer.">
+  <meta property="og:description" content="Developer and CTF player from Hong Kong.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yoursite.com">
+  <meta property="og:url" content="https://mycosmic.dev/">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
@@ -51,12 +51,12 @@
     <header class="intro">
       <div class="doodle" aria-hidden="true">✿</div>
       <h1 id="site-name">Cosmic Crusader</h1>
-      <p class="identity" id="site-identity">developer & maker of things</p>
+      <p class="identity" id="site-identity">developer and ctfer</p>
       <p class="bio" id="site-bio">
-        Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong o/
+        Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)
       </p>
       <div class="now-card" id="site-now">
-        <span class="now-label">now —</span> ctfing w/ <a href="https://ctftime.org/team/83678/" data-astro-cid-j7pv25f6="">Black Bauhinia</a>
+        <span class="now-label">now —</span> ctfing with <a href="https://b6a.black/" target="_blank" rel="noopener">Black Bauhinia</a> and <a href="https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/" target="_blank" rel="noopener">Marco The Dog</a>
       </div>
     </header>
 
@@ -82,7 +82,7 @@
 
     <section class="writing" aria-labelledby="writing-heading">
       <h2 id="writing-heading">Writing</h2>
-      <p class="writing-placeholder" id="writing-list">I'm working on a few posts. Check back sometime.</p>
+      <p class="writing-placeholder" id="writing-list">CTF notes, macOS projects, and random engineering thoughts will land here.</p>
     </section>
 
     <hr class="sep" aria-hidden="true">
@@ -90,9 +90,9 @@
     <section class="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Find me</h2>
       <ul class="link-list" id="link-list">
-        <li><a href="mailto:you@example.com">email</a></li>
+        <li><a href="mailto:edwinchansjps@gmail.com">email</a></li>
         <li><a href="https://github.com/CosmicCrusader23" target="_blank" rel="noopener">github</a></li>
-        <li><a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">twitter</a></li>
+        <li><a href="https://www.youtube.com/@Edgelord511" target="_blank" rel="noopener">youtube</a></li>
       </ul>
     </section>
   </main>
@@ -101,7 +101,7 @@
     <p>
       <span class="footer-year">2026</span>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <span class="footer-line" id="footer-line">© 2026 Cosmic Crusader. All rights reserved.</span>
+      <span class="footer-line" id="footer-line">© 2026 Cosmic Crusader.</span>
     </p>
   </footer>
 
@@ -113,6 +113,7 @@
       if (!toggle) return;
 
       function setButtonState(isDark) {
+        html.classList.toggle('light', !isDark);
         toggle.classList.toggle('is-dark', isDark);
         toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
         toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
@@ -123,13 +124,15 @@
       const defaultDark = !savedTheme || savedTheme === 'dark';
 
       // Apply initial theme (default to dark)
-      if (defaultDark) html.classList.add('dark');
+      html.classList.toggle('dark', defaultDark);
+      html.classList.toggle('light', !defaultDark);
       setButtonState(html.classList.contains('dark'));
 
       // Toggle theme on button click
       toggle.addEventListener('click', function() {
         html.classList.toggle('dark');
         const isDark = html.classList.contains('dark');
+        html.classList.toggle('light', !isDark);
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         setButtonState(isDark);
 

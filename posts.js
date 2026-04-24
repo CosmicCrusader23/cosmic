@@ -10,12 +10,12 @@
     .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
     .then(renderPosts)
     .catch(function () { 
-      document.getElementById('post-list').innerHTML = '<li class="post-empty">No posts yet. Check back soon!</li>';
+      document.getElementById('post-list').innerHTML = '<li class="post-empty">Writeups soon — probably CTF, macOS, and random engineering notes.</li>';
     });
 
   function renderPosts(c) {
     if (!c.writing || !c.writing.length) {
-      document.getElementById('post-list').innerHTML = '<li class="post-empty">No posts yet. Check back soon!</li>';
+      document.getElementById('post-list').innerHTML = '<li class="post-empty">Writeups soon — probably CTF, macOS, and random engineering notes.</li>';
       return;
     }
 
@@ -26,7 +26,7 @@
     var posts = c.writing.filter(function(p) { return p.url; });
 
     if (!posts.length) {
-      ul.innerHTML = '<li class="post-empty">No posts yet. Check back soon!</li>';
+      ul.innerHTML = '<li class="post-empty">Writeups soon — probably CTF, macOS, and random engineering notes.</li>';
       return;
     }
 

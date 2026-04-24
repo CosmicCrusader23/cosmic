@@ -2,7 +2,7 @@
   "name": "Cosmic Crusader",
   "identity": "developer and ctfer",
   "bio": "Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)",
-  "now": "ctfing at <a href='https://b6a.black/' target='_blank'>Black Bauhina</a> and <a href='https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/' target='_blank'>Marco The Dog</a>",
+  "now": "ctfing with <a href='https://b6a.black/' target='_blank' rel='noopener'>Black Bauhinia</a> and <a href='https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/' target='_blank' rel='noopener'>Marco The Dog</a>",
   "projects": [
     {
       "title": "MacLiveEngine",
@@ -11,10 +11,10 @@
       "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
     },
     {
-      "title": "More To Come",
-      "description": "chilling rn",
+      "title": "More experiments soon",
+      "description": "Small tools, CTF writeups, and macOS projects will land here.",
       "year": "2026",
-      "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
+      "url": null
     }
   ],
   "achievements": [
@@ -29,8 +29,8 @@
   ],
   "writing": [
     {
-      "title": "More soon",
-      "description": "I'm working on a few posts. Check back sometime.",
+      "title": "Writeups soon",
+      "description": "CTF notes, macOS projects, and random engineering thoughts will land here.",
       "date": "March 2026",
       "url": null
     }
@@ -38,10 +38,10 @@
   "links": {
     "email": "edwinchansjps@gmail.com",
     "github": "https://github.com/CosmicCrusader23",
-    "twitter": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ",
+    "twitter": null,
     "youtube": "https://www.youtube.com/@Edgelord511",
     "facebook": null,
     "linkedin": null
   },
-  "footer_line": "© 2026 Cosmic Crusader. All rights reserved."
+  "footer_line": "© 2026 Cosmic Crusader."
 }

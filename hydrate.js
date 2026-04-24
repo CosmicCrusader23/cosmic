@@ -36,15 +36,17 @@
       var ul = document.getElementById('project-list');
       if (ul) {
         ul.innerHTML = c.projects.map(function (p) {
-          var linkAttrs = p.url && p.url !== '#'
-            ? 'href="' + esc(p.url) + '" target="_blank" rel="noopener"'
-            : 'href="#"';
+          var hasUrl = p.url && p.url !== '#';
+          var tag = hasUrl ? 'a' : 'div';
+          var linkAttrs = hasUrl
+            ? ' href="' + esc(p.url) + '" target="_blank" rel="noopener"'
+            : '';
           return '<li>'
-            + '<a class="project-card" ' + linkAttrs + '>'
+            + '<' + tag + ' class="project-card' + (hasUrl ? '' : ' is-static') + '"' + linkAttrs + '>'
             + '<span class="project-title">' + esc(p.title) + '</span>'
             + '<span class="project-year">' + esc(p.year) + '</span>'
             + '<span class="project-desc">' + esc(p.description) + '</span>'
-            + '</a>'
+            + '</' + tag + '>'
             + '</li>';
         }).join('');
       }

@@ -11,7 +11,7 @@
   <meta property="og:title" content="Posts — Cosmic Crusader">
   <meta property="og:description" content="Writeups and posts">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yoursite.com/posts.html">
+  <meta property="og:url" content="https://mycosmic.dev/posts.html">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
@@ -65,7 +65,7 @@
     <p>
       <span class="footer-year">2026</span>
       <span class="footer-sep" aria-hidden="true">·</span>
-      <span class="footer-line">© 2026 Cosmic Crusader. All rights reserved.</span>
+      <span class="footer-line">© 2026 Cosmic Crusader.</span>
     </p>
   </footer>
 
@@ -80,6 +80,7 @@
       if (!toggle) return;
 
       function setButtonState(isDark) {
+        html.classList.toggle('light', !isDark);
         toggle.classList.toggle('is-dark', isDark);
         toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
         toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
@@ -88,12 +89,14 @@
       const savedTheme = localStorage.getItem('theme');
       const defaultDark = !savedTheme || savedTheme === 'dark';
 
-      if (defaultDark) html.classList.add('dark');
+      html.classList.toggle('dark', defaultDark);
+      html.classList.toggle('light', !defaultDark);
       setButtonState(html.classList.contains('dark'));
 
       toggle.addEventListener('click', function() {
         html.classList.toggle('dark');
         const isDark = html.classList.contains('dark');
+        html.classList.toggle('light', !isDark);
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         setButtonState(isDark);
 
