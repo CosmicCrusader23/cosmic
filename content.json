@@ -11,6 +11,18 @@
       "url": "https://github.com/CosmicCrusader23/MacLiveEngine"
     },
     {
+      "title": "IB question bank",
+      "description": "Curated, merged IB Mathematics question bank (AA+AI, HL+SL) and Physics grouped by syllabus topic for revision.",
+      "year": "2026",
+      "url": "https://github.com/CosmicCrusader23/ib-question-bank"
+    },
+    {
+      "title": "DBSMO website",
+      "description": "Math training platform for DBS complete with many features such as answer-only problem sets, automatic grading, progress tracking, teaching videos, solution links, feedback reports, and teacher analytics.",
+      "year": "2026",
+      "url": "https://github.com/CosmicCrusader23/dbsmo"
+    },
+    {
       "title": "More experiments soon",
       "description": "Small tools, CTF writeups, and macOS projects will land here.",
       "year": "2026",
