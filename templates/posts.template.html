@@ -11,10 +11,16 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mycosmic.dev/posts.html">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem('theme');
+      document.documentElement.classList.add(savedTheme === 'light' ? 'light' : 'dark');
+    }());
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=anchor-fix-2">
+  <link rel="stylesheet" href="style.css?v=anchor-fix-3">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -32,6 +38,6 @@
   <footer><p><span class="footer-year">2026</span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-line">{{FOOTER}}</span></p></footer>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
-  <script src="theme.js?v=anchor-fix-2"></script>
+  <script src="theme.js?v=anchor-fix-3"></script>
 </body>
 </html>

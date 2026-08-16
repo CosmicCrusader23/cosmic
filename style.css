@@ -139,7 +139,7 @@ main {
 .home-index a { color: var(--fg-muted); }
 .home-index a:hover { color: var(--fg); }
 .home-content > section + section { margin-top: 2.75rem; }
-.home-content section[id] { scroll-margin-top: 70px; }
+.home-content section[id] { scroll-margin-top: 62px; }
 
 footer {
   max-width: var(--measure);
@@ -760,7 +760,7 @@ a:focus-visible {
 .markdown-body p { margin: 1rem 0; line-height: 1.625; }
 .markdown-body h2,
 .markdown-body h3,
-.markdown-body h4 { scroll-margin-top: 70px; }
+.markdown-body h4 { scroll-margin-top: 62px; }
 .markdown-body h2 { color: var(--fg); font-size: 1.5rem; font-weight: 700; line-height: 1.35; margin: 1rem 0; text-transform: none; }
 .markdown-body h3 { color: var(--fg); font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 1rem 0; }
 .markdown-body h4 { color: var(--fg); font-size: 1.1rem; font-weight: 700; line-height: 1.45; margin: 1rem 0; }

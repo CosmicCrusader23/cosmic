@@ -8,7 +8,7 @@
     var nav = document.querySelector('.nav-bar');
     if (!nav) return 10;
 
-    return Math.max(10, nav.getBoundingClientRect().bottom + 10);
+    return Math.max(2, nav.getBoundingClientRect().bottom + 2);
   }
 
   function alignHashTarget() {
