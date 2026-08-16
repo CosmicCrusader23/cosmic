@@ -16,3 +16,5 @@ Content now lives in Markdown instead of `content.json`:
 Run `npm run build` after editing. The build script generates the static `index.html`, `posts.html`, and `posts/*.html` files that GitHub Pages serves. Writeups support headings, links, lists, blockquotes, tables, inline code, fenced code blocks, and images.
 
 For GitHub Pages without Actions, set Pages to **Deploy from a branch**, choose `main` (or `master`) and the `/ (root)` folder. Commit the generated HTML after each build; no workflow or paid CI feature is required.
+
+Visitors can read the site, but they cannot publish to it. Publishing is triggered by changes pushed to the selected branch, so only repository collaborators with write access can publish directly. Someone else can open a pull request, but you decide whether to merge it. The `pages build and deployment` entry GitHub shows is its built-in Pages deployment, not a workflow you need to create.

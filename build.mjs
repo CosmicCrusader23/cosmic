@@ -321,12 +321,7 @@ function renderPostCards(posts) {
   }).join('\n');
 }
 
-function renderWritingPreview(posts) {
-  if (!posts.length) return '<li class="writing-empty">Writeups will land here.</li>';
-  return posts.slice(0, 3).map((post) => `<li><a href="posts/${escapeAttribute(post.slug)}.html">${escapeHTML(post.title || post.slug)}</a><span>${escapeHTML(post.status || post.date || '')}</span></li>`).join('\n');
-}
-
-function renderHome(site, posts) {
+function renderHome(site) {
   const projects = renderProjectList(readTable('projects.md'));
   const achievements = renderAchievementList(readTable('achievements.md'));
   const cves = renderMarkdown(read(path.join(CONTENT_DIR, 'cves.md'))).html;
@@ -339,21 +334,15 @@ function renderHome(site, posts) {
     <div class="now-card"><span class="now-label">now —</span> ${renderInline(site.now)}</div>
   </header>
 
-  <hr class="sep" aria-hidden="true">
-
   <section class="projects" aria-labelledby="projects-heading">
     <h2 id="projects-heading">Projects</h2>
     <ul class="project-list">${projects}</ul>
   </section>
 
-  <hr class="sep" aria-hidden="true">
-
   <section class="achievements" aria-labelledby="achievements-heading">
     <h2 id="achievements-heading">Achievements</h2>
     <ul class="achievement-list">${achievements}</ul>
   </section>
-
-  <hr class="sep" aria-hidden="true">
 
   <section class="cves" aria-labelledby="cves-heading">
     <div class="section-heading-row">
@@ -362,18 +351,6 @@ function renderHome(site, posts) {
     </div>
     <div class="cve-table-wrap">${cves}</div>
   </section>
-
-  <hr class="sep" aria-hidden="true">
-
-  <section class="writing" aria-labelledby="writing-heading">
-    <div class="section-heading-row">
-      <h2 id="writing-heading">Writing</h2>
-      <a class="section-link" href="./posts.html">all posts ↗</a>
-    </div>
-    <ul class="writing-real-list">${renderWritingPreview(posts)}</ul>
-  </section>
-
-  <hr class="sep" aria-hidden="true">
 
   <section class="contact" aria-labelledby="contact-heading">
     <h2 id="contact-heading">Find me</h2>
@@ -398,7 +375,6 @@ function renderPostsPage(site, posts) {
       <h1>Posts</h1>
       <p class="identity">Technical writeups, research notes, and things worth keeping.</p>
     </header>
-    <hr class="sep" aria-hidden="true">
     <section aria-labelledby="posts-heading">
       <h2 id="posts-heading" class="sr-only">All posts</h2>
       <div class="posts-layout">
@@ -436,7 +412,7 @@ const site = parseFrontmatter(read(path.join(CONTENT_DIR, 'site.md'))).data;
 const posts = readPosts();
 
 resetDirectory(OUTPUT_POSTS_DIR);
-write(path.join(ROOT, 'index.html'), renderHome(site, posts));
+write(path.join(ROOT, 'index.html'), renderHome(site));
 write(path.join(ROOT, 'posts.html'), renderPostsPage(site, posts));
 
 for (const post of posts) {
