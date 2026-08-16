@@ -11,6 +11,7 @@ Content now lives in Markdown instead of `content.json`:
 - `content/achievements.md` — achievements table
 - `content/cves.md` — CVE table and links
 - `content/links.md` — contact links
+- `content/images/` — post images, copied into the published `/images/` folder during build
 - `content/posts/*.md` — writeups with simple frontmatter
 
 Run `npm run build` after editing. The build script generates the static `index.html`, `posts.html`, and `posts/*.html` files that GitHub Pages serves. Writeups support headings, links, lists, blockquotes, tables, inline code, fenced code blocks, and images.

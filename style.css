@@ -96,6 +96,9 @@ main {
   padding: 5.25rem 1.5rem 2.5rem;
 }
 
+.home-main > section + section { margin-top: 2.75rem; }
+.home-main section[id] { scroll-margin-top: 5rem; }
+
 footer {
   max-width: var(--measure);
   margin: 0 auto;

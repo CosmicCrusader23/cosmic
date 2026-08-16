@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, 'content');
+const CONTENT_IMAGES_DIR = path.join(CONTENT_DIR, 'images');
 const TEMPLATE_DIR = path.join(ROOT, 'templates');
 const OUTPUT_POSTS_DIR = path.join(ROOT, 'posts');
 
@@ -19,6 +20,11 @@ function write(filePath, value) {
 function resetDirectory(directory) {
   fs.rmSync(directory, { recursive: true, force: true });
   fs.mkdirSync(directory, { recursive: true });
+}
+
+function syncImages() {
+  if (!fs.existsSync(CONTENT_IMAGES_DIR)) return;
+  fs.cpSync(CONTENT_IMAGES_DIR, path.join(ROOT, 'images'), { recursive: true, force: true });
 }
 
 function escapeHTML(value = '') {
@@ -334,17 +340,17 @@ function renderHome(site) {
     <div class="now-card"><span class="now-label">now —</span> ${renderInline(site.now)}</div>
   </header>
 
-  <section class="projects" aria-labelledby="projects-heading">
+  <section id="projects" class="projects" aria-labelledby="projects-heading">
     <h2 id="projects-heading">Projects</h2>
     <ul class="project-list">${projects}</ul>
   </section>
 
-  <section class="achievements" aria-labelledby="achievements-heading">
+  <section id="achievements" class="achievements" aria-labelledby="achievements-heading">
     <h2 id="achievements-heading">Achievements</h2>
     <ul class="achievement-list">${achievements}</ul>
   </section>
 
-  <section class="cves" aria-labelledby="cves-heading">
+  <section id="cves" class="cves" aria-labelledby="cves-heading">
     <div class="section-heading-row">
       <h2 id="cves-heading">CVEs</h2>
       <span class="section-note">security research</span>
@@ -352,7 +358,7 @@ function renderHome(site) {
     <div class="cve-table-wrap">${cves}</div>
   </section>
 
-  <section class="contact" aria-labelledby="contact-heading">
+  <section id="contact" class="contact" aria-labelledby="contact-heading">
     <h2 id="contact-heading">Find me</h2>
     <ul class="link-list">${links}</ul>
   </section>`;
@@ -375,7 +381,7 @@ function renderPostsPage(site, posts) {
       <h1>Posts</h1>
       <p class="identity">Technical writeups, research notes, and things worth keeping.</p>
     </header>
-    <section aria-labelledby="posts-heading">
+    <section id="posts" aria-labelledby="posts-heading">
       <h2 id="posts-heading" class="sr-only">All posts</h2>
       <div class="posts-layout">
         <aside class="posts-aside" aria-label="Posts guide">
@@ -411,6 +417,7 @@ function renderPostPage(site, post) {
 const site = parseFrontmatter(read(path.join(CONTENT_DIR, 'site.md'))).data;
 const posts = readPosts();
 
+syncImages();
 resetDirectory(OUTPUT_POSTS_DIR);
 write(path.join(ROOT, 'index.html'), renderHome(site));
 write(path.join(ROOT, 'posts.html'), renderPostsPage(site, posts));
