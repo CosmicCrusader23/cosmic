@@ -138,6 +138,7 @@ main {
 .home-index li { margin: 0.7rem 0; }
 .home-index a { color: var(--fg-muted); }
 .home-index a:hover { color: var(--fg); }
+.home-content > header + section { margin-top: 2.75rem; }
 .home-content > section + section { margin-top: 2.75rem; }
 .home-content section[id] { scroll-margin-top: 62px; }
 
