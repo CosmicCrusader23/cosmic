@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="author" content="Cosmic Crusader">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mycosmic.dev/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="./" class="nav-link active">home</a>
+      <a href="./posts.html" class="nav-link">posts</a>
+    </div>
+  </nav>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
+    <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
+    <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
+  </button>
+  <main id="main">{{BODY}}</main>
+  <footer><p><span class="footer-year">2026</span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-line">{{FOOTER}}</span></p></footer>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

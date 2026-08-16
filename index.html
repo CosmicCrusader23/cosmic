@@ -4,149 +4,111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosmic Crusader</title>
-  <meta name="description" content="Developer and CTF player from Hong Kong.">
+  <meta name="description" content="Hi! I&#39;m CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)">
   <meta name="author" content="Cosmic Crusader">
-
-  <!-- OpenGraph -->
   <meta property="og:title" content="Cosmic Crusader">
-  <meta property="og:description" content="Developer and CTF player from Hong Kong.">
+  <meta property="og:description" content="developer and ctfer">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mycosmic.dev/">
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
-
-  <!-- Google Fonts: Architects Daughter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-
-  <!-- Inline critical font-face as fallback in case Google Fonts is slow -->
-  <style>
-    /* Prevent FOIT: show text immediately, swap when font loads */
-    body { font-display: swap; }
-  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-
-  <!-- Navigation bar -->
   <nav class="nav-bar" aria-label="Main navigation">
     <div class="nav-container">
       <a href="./" class="nav-link active">home</a>
       <a href="./posts.html" class="nav-link">posts</a>
-
     </div>
   </nav>
-
-  <!-- Theme toggle button -->
   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
     <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
     <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
   </button>
+  <main id="main"><header class="intro">
+    <div class="doodle" aria-hidden="true">✿</div>
+    <h1>Cosmic Crusader</h1>
+    <p class="identity">developer and ctfer</p>
+    <p class="bio">Hi! I&#39;m CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)</p>
+    <div class="now-card"><span class="now-label">now —</span> ctfing with <a href="https://b6a.black/" target="_blank" rel="noopener">Black Bauhinia</a> and <a href="https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/" target="_blank" rel="noopener">Marco The Dog</a></div>
+  </header>
 
-  <main id="main">
-    <header class="intro">
-      <div class="doodle" aria-hidden="true">✿</div>
-      <h1 id="site-name">Cosmic Crusader</h1>
-      <p class="identity" id="site-identity">developer and ctfer</p>
-      <p class="bio" id="site-bio">
-        Hi! I'm CosmicCrusader [Edwin Chan], a competitive programmer and CTF player from Hong Kong :)
-      </p>
-      <div class="now-card" id="site-now">
-        <span class="now-label">now —</span> ctfing with <a href="https://b6a.black/" target="_blank" rel="noopener">Black Bauhinia</a> and <a href="https://m4rc0th3d0g-ctrl.github.io/marcothedog.github.io/" target="_blank" rel="noopener">Marco The Dog</a>
-      </div>
-    </header>
+  <hr class="sep" aria-hidden="true">
 
-    <hr class="sep" aria-hidden="true">
+  <section class="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <ul class="project-list"><li><a class="project-card" href="https://github.com/CosmicCrusader23/MacLiveEngine" target="_blank" rel="noopener">
+      <span class="project-title">MacLiveEngine</span>
+      <span class="project-year">2026</span>
+      <span class="project-desc">Live wallpaper engine for macOS — videos, web scenes, and more on your desktop.</span>
+    </a></li>
+<li><a class="project-card" href="https://github.com/CosmicCrusader23/ib-question-bank" target="_blank" rel="noopener">
+      <span class="project-title">IB question bank</span>
+      <span class="project-year">2026</span>
+      <span class="project-desc">Curated, merged IB Mathematics question bank (AA+AI, HL+SL) and Physics grouped by syllabus topic for revision.</span>
+    </a></li>
+<li><a class="project-card" href="https://github.com/CosmicCrusader23/dbsmo" target="_blank" rel="noopener">
+      <span class="project-title">DBSMO website</span>
+      <span class="project-year">2026</span>
+      <span class="project-desc">Math training platform for DBS with answer-only problem sets, automatic grading, progress tracking, teaching videos, solution links, feedback reports, and teacher analytics.</span>
+    </a></li>
+<li><div class="project-card is-static">
+      <span class="project-title">More experiments soon</span>
+      <span class="project-year">2026</span>
+      <span class="project-desc">Small tools, CTF writeups, and macOS projects will land here.</span>
+    </div></li></ul>
+  </section>
 
-    <section class="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-      <ul class="project-list" id="project-list">
-        <!-- Rendered from content.json by hydrate.js -->
-      </ul>
-    </section>
+  <hr class="sep" aria-hidden="true">
 
-    <hr class="sep" aria-hidden="true">
+  <section class="achievements" aria-labelledby="achievements-heading">
+    <h2 id="achievements-heading">Achievements</h2>
+    <ul class="achievement-list"><li class="achievement-item">
+    <span class="achievement-title">First place — PolyU x NuttyShell 2026 CTF Secondary Division</span>
+    <span class="achievement-year">2026</span>
+  </li>
+<li class="achievement-item">
+    <span class="achievement-title">Third place — HKCERT CTF Finals 2026 Secondary Division</span>
+    <span class="achievement-year">2026</span>
+  </li></ul>
+  </section>
 
-    <section class="achievements" aria-labelledby="achievements-heading">
-      <h2 id="achievements-heading">Achievements</h2>
-      <ul class="achievement-list" id="achievement-list">
-        <!-- Rendered from content.json by hydrate.js -->
-      </ul>
-    </section>
+  <hr class="sep" aria-hidden="true">
 
-    <hr class="sep" aria-hidden="true">
+  <section class="cves" aria-labelledby="cves-heading">
+    <div class="section-heading-row">
+      <h2 id="cves-heading">CVEs</h2>
+      <span class="section-note">security research</span>
+    </div>
+    <div class="cve-table-wrap"><table><thead><tr><th scope="col">CVE</th><th scope="col">Reference</th><th scope="col">Write-up</th></tr></thead><tbody><tr><td>CVE-2026-52766</td><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-52766" target="_blank" rel="noopener">NVD</a></td><td><a href="posts/cve-2026-52766.html">Write-up</a></td></tr><tr><td>CVE-2026-52763</td><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-52763" target="_blank" rel="noopener">NVD</a></td><td><a href="posts/cve-2026-52763.html">Write-up</a></td></tr><tr><td>CVE-2026-50029</td><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50029" target="_blank" rel="noopener">NVD</a></td><td><a href="posts/cve-2026-50029.html">Write-up</a></td></tr><tr><td>CVE-2026-54705</td><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-54705" target="_blank" rel="noopener">NVD</a></td><td><a href="posts/cve-2026-54705.html">Write-up</a></td></tr></tbody></table></div>
+  </section>
 
-    <section class="writing" aria-labelledby="writing-heading">
+  <hr class="sep" aria-hidden="true">
+
+  <section class="writing" aria-labelledby="writing-heading">
+    <div class="section-heading-row">
       <h2 id="writing-heading">Writing</h2>
-      <p class="writing-placeholder" id="writing-list">CTF notes, macOS projects, and random engineering thoughts will land here.</p>
-    </section>
+      <a class="section-link" href="./posts.html">all posts ↗</a>
+    </div>
+    <ul class="writing-real-list"><li><a href="posts/cve-2026-50029.html">CVE-2026-50029</a><span>draft</span></li>
+<li><a href="posts/cve-2026-52763.html">CVE-2026-52763</a><span>draft</span></li>
+<li><a href="posts/cve-2026-52766.html">CVE-2026-52766</a><span>draft</span></li></ul>
+  </section>
 
-    <hr class="sep" aria-hidden="true">
+  <hr class="sep" aria-hidden="true">
 
-    <section class="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Find me</h2>
-      <ul class="link-list" id="link-list">
-        <li><a href="mailto:edwinchansjps@gmail.com">email</a></li>
-        <li><a href="https://github.com/CosmicCrusader23" target="_blank" rel="noopener">github</a></li>
-        <li><a href="https://www.youtube.com/@Edgelord511" target="_blank" rel="noopener">youtube</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>
-      <span class="footer-year">2026</span>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <span class="footer-line" id="footer-line">© 2026 Cosmic Crusader.</span>
-    </p>
-  </footer>
-
-  <!-- Theme toggle script -->
-  <script>
-    (function() {
-      const html = document.documentElement;
-      const toggle = document.getElementById('theme-toggle');
-      if (!toggle) return;
-
-      function setButtonState(isDark) {
-        html.classList.toggle('light', !isDark);
-        toggle.classList.toggle('is-dark', isDark);
-        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      }
-
-      // Check for saved theme preference or default to dark
-      const savedTheme = localStorage.getItem('theme');
-      const defaultDark = !savedTheme || savedTheme === 'dark';
-
-      // Apply initial theme (default to dark)
-      html.classList.toggle('dark', defaultDark);
-      html.classList.toggle('light', !defaultDark);
-      setButtonState(html.classList.contains('dark'));
-
-      // Toggle theme on button click
-      toggle.addEventListener('click', function() {
-        html.classList.toggle('dark');
-        const isDark = html.classList.contains('dark');
-        html.classList.toggle('light', !isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        setButtonState(isDark);
-
-        // tactile animation
-        toggle.animate(
-          [ { transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(0deg)' } ],
-          { duration: 360, easing: 'cubic-bezier(.25,.46,.45,.94)' }
-        );
-      });
-    })();
-  </script>
-
+  <section class="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Find me</h2>
+    <ul class="link-list"><li><a href="mailto:edwinchansjps@gmail.com" target="_blank" rel="noopener">email</a></li>
+<li><a href="https://github.com/CosmicCrusader23" target="_blank" rel="noopener">github</a></li>
+<li><a href="https://www.youtube.com/@Edgelord511" target="_blank" rel="noopener">youtube</a></li></ul>
+  </section></main>
+  <footer><p><span class="footer-year">2026</span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-line">© 2026 Cosmic Crusader. MTD26{cl0ut_f0r_th3_w1n!1}</span></p></footer>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
-  <script src="hydrate.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>

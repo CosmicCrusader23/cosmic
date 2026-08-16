@@ -1,4 +1,10 @@
 {
+  "name": "cosmic-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
   "dependencies": {
     "lucide": "^0.563.0"
   }

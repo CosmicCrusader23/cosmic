@@ -4,110 +4,97 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Posts — Cosmic Crusader</title>
-  <meta name="description" content="Writeups and posts by Cosmic Crusader">
+  <meta name="description" content="Writeups and notes by Cosmic Crusader">
   <meta name="author" content="Cosmic Crusader">
-
-  <!-- OpenGraph -->
   <meta property="og:title" content="Posts — Cosmic Crusader">
-  <meta property="og:description" content="Writeups and posts">
+  <meta property="og:description" content="Writeups and notes by Cosmic Crusader">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mycosmic.dev/posts.html">
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
-
-  <!-- Google Fonts: Architects Daughter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    body { font-display: swap; }
-  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-
-  <!-- Navigation bar -->
   <nav class="nav-bar" aria-label="Main navigation">
     <div class="nav-container">
       <a href="./" class="nav-link">home</a>
       <a href="./posts.html" class="nav-link active">posts</a>
     </div>
   </nav>
-
-  <!-- Theme toggle button -->
   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
     <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
     <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
   </button>
-
-  <main id="main">
-    <header class="intro">
+  <main id="main" class="posts-page-main"><header class="intro">
       <div class="doodle" aria-hidden="true">✎</div>
       <h1>Posts</h1>
-      <p class="identity">Thoughts, writeups, and other things I've written.</p>
+      <p class="identity">Technical writeups, research notes, and things worth keeping.</p>
     </header>
-
     <hr class="sep" aria-hidden="true">
-
     <section aria-labelledby="posts-heading">
       <h2 id="posts-heading" class="sr-only">All posts</h2>
-      <ul class="post-list" id="post-list">
-        <!-- Rendered from content.json by posts.js -->
-      </ul>
-    </section>
-  </main>
+      <div class="posts-layout">
+        <aside class="posts-aside" aria-label="Posts guide">
+          <span class="aside-label">notes</span>
+          <p>Markdown-first, linkable, and built for reading.</p>
+          <a href="./" class="aside-link">← home</a>
+        </aside>
+        <div class="post-list"><article class="post-item">
+      <div class="post-card-top">
+        <span class="post-date">Draft</span>
 
-  <footer>
-    <p>
-      <span class="footer-year">2026</span>
-      <span class="footer-sep" aria-hidden="true">·</span>
-      <span class="footer-line">© 2026 Cosmic Crusader.</span>
-    </p>
-  </footer>
+      </div>
+      <a href="posts/cve-2026-50029.html" class="post-link">
+        <span class="post-title">CVE-2026-50029</span>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="post-desc">A write-up for CVE-2026-50029.</p>
+      <div class="post-tags"><span>cve</span><span>security research</span></div>
+    </article>
+<article class="post-item">
+      <div class="post-card-top">
+        <span class="post-date">Draft</span>
 
+      </div>
+      <a href="posts/cve-2026-52763.html" class="post-link">
+        <span class="post-title">CVE-2026-52763</span>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="post-desc">A write-up for CVE-2026-52763.</p>
+      <div class="post-tags"><span>cve</span><span>security research</span></div>
+    </article>
+<article class="post-item">
+      <div class="post-card-top">
+        <span class="post-date">Draft</span>
+
+      </div>
+      <a href="posts/cve-2026-52766.html" class="post-link">
+        <span class="post-title">CVE-2026-52766</span>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="post-desc">A write-up for CVE-2026-52766.</p>
+      <div class="post-tags"><span>cve</span><span>security research</span></div>
+    </article>
+<article class="post-item">
+      <div class="post-card-top">
+        <span class="post-date">Draft</span>
+
+      </div>
+      <a href="posts/cve-2026-54705.html" class="post-link">
+        <span class="post-title">CVE-2026-54705</span>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="post-desc">A write-up for CVE-2026-54705.</p>
+      <div class="post-tags"><span>cve</span><span>security research</span></div>
+    </article></div>
+      </div>
+    </section></main>
+  <footer><p><span class="footer-year">2026</span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-line">© 2026 Cosmic Crusader. MTD26{cl0ut_f0r_th3_w1n!1}</span></p></footer>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
-  
-  <!-- Theme toggle script -->
-  <script>
-    (function() {
-      const html = document.documentElement;
-      const toggle = document.getElementById('theme-toggle');
-      if (!toggle) return;
-
-      function setButtonState(isDark) {
-        html.classList.toggle('light', !isDark);
-        toggle.classList.toggle('is-dark', isDark);
-        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      }
-
-      const savedTheme = localStorage.getItem('theme');
-      const defaultDark = !savedTheme || savedTheme === 'dark';
-
-      html.classList.toggle('dark', defaultDark);
-      html.classList.toggle('light', !defaultDark);
-      setButtonState(html.classList.contains('dark'));
-
-      toggle.addEventListener('click', function() {
-        html.classList.toggle('dark');
-        const isDark = html.classList.contains('dark');
-        html.classList.toggle('light', !isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        setButtonState(isDark);
-
-        toggle.animate(
-          [ { transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(0deg)' } ],
-          { duration: 360, easing: 'cubic-bezier(.25,.46,.45,.94)' }
-        );
-      });
-    })();
-  </script>
-
-  <script src="posts.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>
