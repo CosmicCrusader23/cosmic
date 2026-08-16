@@ -3,6 +3,30 @@
 
   var html = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
+
+  function alignHashTarget() {
+    if (!window.location.hash) return;
+
+    var id = decodeURIComponent(window.location.hash.slice(1));
+    var target = document.getElementById(id);
+    if (!target) {
+      target = document.getElementById(id.replace(/[.,;:!?]+$/, ''));
+    }
+    if (!target) return;
+
+    window.scrollTo({
+      top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 10),
+      behavior: 'auto'
+    });
+  }
+
+  window.addEventListener('hashchange', alignHashTarget);
+  window.addEventListener('load', alignHashTarget);
+  window.setTimeout(alignHashTarget, 0);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(alignHashTarget);
+  }
+
   if (!toggle) return;
 
   function setButtonState(isDark) {
