@@ -193,7 +193,7 @@ function renderMarkdown(source) {
       const text = heading[2];
       const id = `${slugify(text)}-${headings.length + 1}`;
       headings.push({ level, id, text: plainHeadingText(text) });
-      html.push(`<h${level} id="${id}">${renderInline(text)}</h${level}>`);
+      html.push(`<h${level} id="${id}"><a class="heading-link" href="#${escapeAttribute(id)}">${renderInline(text)}</a></h${level}>`);
       index += 1;
       continue;
     }
@@ -313,16 +313,18 @@ function renderPostCards(posts) {
     const tags = String(post.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean);
     const tagMarkup = tags.length ? `<div class="post-tags">${tags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join('')}</div>` : '';
     return `<article class="post-item">
-      <div class="post-card-top">
-        <span class="post-date">${escapeHTML(post.status === 'draft' ? 'Draft' : (post.date || 'Draft'))}</span>
-        ${post.status && post.status !== 'draft' ? `<span class="post-status">${escapeHTML(post.status)}</span>` : ''}
-      </div>
-      <a href="posts/${escapeAttribute(post.slug)}.html" class="post-link">
-        <span class="post-title">${escapeHTML(post.title || post.slug)}</span>
-        <span class="post-arrow" aria-hidden="true">↗</span>
+      <a href="posts/${escapeAttribute(post.slug)}.html" class="post-card-link">
+        <div class="post-card-top">
+          <span class="post-date">${escapeHTML(post.status === 'draft' ? 'Draft' : (post.date || 'Draft'))}</span>
+          ${post.status && post.status !== 'draft' ? `<span class="post-status">${escapeHTML(post.status)}</span>` : ''}
+        </div>
+        <div class="post-card-title-row">
+          <span class="post-title">${escapeHTML(post.title || post.slug)}</span>
+          <span class="post-arrow" aria-hidden="true">↗</span>
+        </div>
+        ${post.description ? `<p class="post-desc">${renderInline(post.description)}</p>` : ''}
+        ${tagMarkup}
       </a>
-      ${post.description ? `<p class="post-desc">${renderInline(post.description)}</p>` : ''}
-      ${tagMarkup}
     </article>`;
   }).join('\n');
 }
@@ -332,36 +334,49 @@ function renderHome(site) {
   const achievements = renderAchievementList(readTable('achievements.md'));
   const cves = renderMarkdown(read(path.join(CONTENT_DIR, 'cves.md'))).html;
   const links = renderContactLinks(readTable('links.md'));
-  const body = `<header class="intro">
-    <div class="doodle" aria-hidden="true">✿</div>
-    <h1>${escapeHTML(site.name)}</h1>
-    <p class="identity">${renderInline(site.identity)}</p>
-    <p class="bio">${renderInline(site.bio)}</p>
-    <div class="now-card"><span class="now-label">now —</span> ${renderInline(site.now)}</div>
-  </header>
+  const body = `<div class="home-layout">
+    <aside class="home-index" aria-label="On this page">
+      <span class="toc-label">on this page</span>
+      <ol>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#cves">CVEs</a></li>
+        <li><a href="#contact">Find me</a></li>
+      </ol>
+    </aside>
+    <div class="home-content">
+      <header class="intro">
+        <div class="doodle" aria-hidden="true">✿</div>
+        <h1>${escapeHTML(site.name)}</h1>
+        <p class="identity">${renderInline(site.identity)}</p>
+        <p class="bio">${renderInline(site.bio)}</p>
+        <div class="now-card"><span class="now-label">now —</span> ${renderInline(site.now)}</div>
+      </header>
 
-  <section id="projects" class="projects" aria-labelledby="projects-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <ul class="project-list">${projects}</ul>
-  </section>
+      <section id="projects" class="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <ul class="project-list">${projects}</ul>
+      </section>
 
-  <section id="achievements" class="achievements" aria-labelledby="achievements-heading">
-    <h2 id="achievements-heading">Achievements</h2>
-    <ul class="achievement-list">${achievements}</ul>
-  </section>
+      <section id="achievements" class="achievements" aria-labelledby="achievements-heading">
+        <h2 id="achievements-heading">Achievements</h2>
+        <ul class="achievement-list">${achievements}</ul>
+      </section>
 
-  <section id="cves" class="cves" aria-labelledby="cves-heading">
-    <div class="section-heading-row">
-      <h2 id="cves-heading">CVEs</h2>
-      <span class="section-note">security research</span>
+      <section id="cves" class="cves" aria-labelledby="cves-heading">
+        <div class="section-heading-row">
+          <h2 id="cves-heading">CVEs</h2>
+          <span class="section-note">security research</span>
+        </div>
+        <div class="cve-table-wrap">${cves}</div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Find me</h2>
+        <ul class="link-list">${links}</ul>
+      </section>
     </div>
-    <div class="cve-table-wrap">${cves}</div>
-  </section>
-
-  <section id="contact" class="contact" aria-labelledby="contact-heading">
-    <h2 id="contact-heading">Find me</h2>
-    <ul class="link-list">${links}</ul>
-  </section>`;
+  </div>`;
 
   return template('index.template.html', {
     TITLE: escapeHTML(site.name),

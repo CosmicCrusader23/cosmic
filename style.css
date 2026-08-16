@@ -96,8 +96,31 @@ main {
   padding: 5.25rem 1.5rem 2.5rem;
 }
 
-.home-main > section + section { margin-top: 2.75rem; }
-.home-main section[id] { scroll-margin-top: 5rem; }
+.home-main { max-width: 980px; }
+
+.home-layout {
+  display: grid;
+  grid-template-columns: minmax(135px, 0.34fr) minmax(0, 620px);
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.home-index {
+  position: sticky;
+  top: 5.25rem;
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border-left: 1.5px solid var(--border);
+  padding: 0.25rem 0 0.25rem 1rem;
+}
+
+.home-index ol { list-style: none; margin: 0; padding: 0; }
+.home-index li { margin: 0.35rem 0; }
+.home-index a { color: var(--fg-muted); }
+.home-index a:hover { color: var(--fg); }
+.home-content > section + section { margin-top: 2.75rem; }
+.home-content section[id] { scroll-margin-top: 10px; }
 
 footer {
   max-width: var(--measure);
@@ -637,7 +660,7 @@ a:focus-visible {
   border-top: 1.5px solid var(--border);
   border-radius: 0;
   box-shadow: none;
-  padding: 1.3rem 0 1.5rem;
+  padding: 0;
 }
 
 .posts-page-main .post-item:last-child { border-bottom: 1.5px solid var(--border); }
@@ -658,12 +681,19 @@ a:focus-visible {
 
 .post-status::before { content: '·'; margin-right: 0.75rem; opacity: 0.6; }
 
-.posts-page-main .post-link {
+.posts-page-main .post-card-link {
+  display: block;
+  padding: 1.3rem 0 1.5rem;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.post-card-title-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0;
+  margin-top: 1rem;
 }
 
 .posts-page-main .post-title {
@@ -673,7 +703,8 @@ a:focus-visible {
 }
 
 .post-arrow { color: var(--fg-muted); transition: transform 200ms var(--ease), color 200ms var(--ease); }
-.post-link:hover .post-arrow { color: var(--fg); transform: translate(2px, -2px); }
+.post-card-link:hover .post-title { text-decoration: underline; text-underline-offset: 4px; }
+.post-card-link:hover .post-arrow { color: var(--fg); transform: translate(2px, -2px); }
 
 .posts-page-main .post-desc {
   max-width: 540px;
@@ -691,7 +722,7 @@ a:focus-visible {
 .post-article { min-width: 0; }
 .post-header { padding-top: 0.25rem; }
 .back-link { color: var(--fg-muted); font-size: 0.8rem; text-decoration: underline; text-underline-offset: 3px; }
-.post-header h1 { margin-top: 1.1rem; font-size: 2rem; }
+.post-header h1 { margin-top: 1.75rem; font-size: 2rem; }
 .post-meta { color: var(--fg-muted); font-size: 0.82rem; margin-top: 0.35rem; }
 
 .post-article > .sep { margin: 2rem 0; }
@@ -704,12 +735,17 @@ a:focus-visible {
 
 .markdown-body { min-width: 0; }
 .markdown-body p { margin: 1rem 0; line-height: 1.8; }
-.markdown-body h2 { color: var(--fg); font-size: 1.35rem; margin: 2.4rem 0 0.85rem; text-transform: none; }
-.markdown-body h3 { color: var(--fg); font-size: 1.1rem; margin: 1.8rem 0 0.65rem; }
-.markdown-body h4 { color: var(--fg); font-size: 1rem; margin: 1.4rem 0 0.5rem; }
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 { scroll-margin-top: 10px; }
+.markdown-body h2 { color: var(--fg); font-size: 1.35rem; font-weight: 700; margin: 2.4rem 0 0.85rem; text-transform: none; }
+.markdown-body h3 { color: var(--fg); font-size: 1.1rem; font-weight: 700; margin: 1.8rem 0 0.65rem; }
+.markdown-body h4 { color: var(--fg); font-size: 1rem; font-weight: 700; margin: 1.4rem 0 0.5rem; }
 .markdown-body h2 + p,
 .markdown-body h3 + p { margin-top: 0.5rem; }
 .markdown-body a { text-decoration: underline; text-underline-offset: 3px; }
+.markdown-body .heading-link { color: inherit; text-decoration: none; }
+.markdown-body .heading-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .markdown-body blockquote { margin: 1.35rem 0; padding: 0.2rem 1rem; border-left: 2px solid var(--border-heavy); color: var(--fg-muted); }
 .markdown-body ul,
 .markdown-body ol { margin: 1rem 0 1rem 1.3rem; }
@@ -860,6 +896,9 @@ a:focus-visible {
 
   .posts-page-main,
   .post-page-main { padding-top: 4rem; }
+
+  .home-layout { display: block; }
+  .home-index { display: none; }
 
   .posts-layout,
   .post-shell { display: block; }
