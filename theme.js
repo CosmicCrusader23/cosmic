@@ -4,6 +4,13 @@
   var html = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
 
+  function getAnchorOffset() {
+    var nav = document.querySelector('.nav-bar');
+    if (!nav) return 10;
+
+    return Math.max(10, nav.getBoundingClientRect().bottom + 10);
+  }
+
   function alignHashTarget() {
     if (!window.location.hash) return;
 
@@ -14,8 +21,14 @@
     }
     if (!target) return;
 
+    var labelledBy = target.getAttribute('aria-labelledby');
+    if (labelledBy) {
+      var heading = document.getElementById(labelledBy);
+      if (heading) target = heading;
+    }
+
     window.scrollTo({
-      top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 10),
+      top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - getAnchorOffset()),
       behavior: 'auto'
     });
   }
