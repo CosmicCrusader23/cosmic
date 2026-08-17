@@ -394,14 +394,13 @@ function renderPostsPage(site, posts) {
     BODY: `<header class="intro">
       <div class="doodle" aria-hidden="true">✎</div>
       <h1>Posts</h1>
-      <p class="identity">Technical writeups, research notes, and things worth keeping.</p>
     </header>
     <section id="posts" aria-labelledby="posts-heading">
       <h2 id="posts-heading" class="sr-only">All posts</h2>
       <div class="posts-layout">
         <aside class="posts-aside" aria-label="Posts guide">
           <span class="aside-label">notes</span>
-          <p>Markdown-first, linkable, and built for reading.</p>
+          <p>reddit</p>
           <a href="./" class="aside-link">← home</a>
         </aside>
         <div class="post-list">${renderPostCards(posts)}</div>
