@@ -241,7 +241,7 @@ footer {
 /* --- Theme toggle button --- */
 .theme-toggle {
   position: fixed;
-  top: 1.25rem;
+  top: 0.45rem;
   right: 1.25rem;
   width: 2.5rem;
   height: 2.5rem;
